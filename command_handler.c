@@ -1,0 +1,80 @@
+#include "shell.h"
+
+/**
+ * execute_command - Executes a command in a child process.
+ * @command: The command to be executed.
+ * @args: Array of arguments for the command.
+ * @path_list: List of directories in the PATH environment variable.
+ */
+void execute_command(char *command, char **args, char **path_list)
+{
+    pid_t pid = fork();
+
+    if (pid == 0)
+    {
+        /* Child process */
+        char *full_path = find_command_path(command, path_list);
+        if (full_path != NULL)
+        {
+            execv(full_path, args);
+            perror("Execution failed");
+            free(full_path);
+        }
+        else
+        {
+            fprintf(stderr, "Command not found: %s\n", command);
+        }
+
+        _exit(EXIT_FAILURE);
+    }
+    else if (pid > 0)
+    {
+        /* Parent process */
+        wait(NULL); /* Wait for the child to finish */
+    }
+    else
+    {
+        perror("Fork failed");
+    }
+}
+
+/**
+ * find_command_path - Finds the full path of a command in the PATH directories.
+ * @command: The command to be found.
+ * @path_list: List of directories in the PATH environment variable.
+ * @return: Full path of the command if found, NULL otherwise.
+ */
+char *find_command_path(char *command, char **path_list)
+{
+    while (*path_list != NULL)
+    {
+        char *full_path = build_full_path(*path_list, command);
+        if (access(full_path, F_OK) == 0)
+        {
+            return (full_path);
+        }
+        free(full_path);
+        path_list++;
+    }
+    return (NULL);
+}
+
+/**
+ * build_full_path - Builds the full path of a command.
+ * @directory: The directory containing the command.
+ * @command: The command to be appended to the directory.
+ * @return: Full path of the command.
+ */
+char *build_full_path(char *directory, char *command)
+{
+    size_t dir_len = strlen(directory);
+    size_t cmd_len = strlen(command);
+    char *full_path = (char *)malloc(dir_len + cmd_len + 2);  /* 1 for '/' and 1 for '\0' */
+    if (full_path != NULL)
+    {
+        strcpy(full_path, directory);
+        full_path[dir_len] = '/';
+        strcpy(full_path + dir_len + 1, command);
+    }
+    return (full_path);
+}
