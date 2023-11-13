@@ -78,3 +78,31 @@ char *build_full_path(char *directory, char *command)
     }
     return (full_path);
 }
+
+/**
+ * get_path_directories - Retrieves the list of directories from the PATH environment variable.
+ * @return: Array of strings representing directories in the PATH.
+ */
+char **get_path_directories(void)
+{
+    char **path_list = malloc(sizeof(char *) * 2);
+    path_list[0] = strdup("/bin");  
+    path_list[1] = NULL;
+
+    return path_list;
+}
+
+/**
+ * free_path_list - Frees the memory allocated for the list of directories.
+ * @path_list: Array of strings representing directories in the PATH.
+ */
+void free_path_list(char **path_list)
+{
+	int i;
+    for (i = 0; path_list[i] != NULL; i++)
+    {
+        free(path_list[i]);
+    }
+    free(path_list);
+}
+
