@@ -30,9 +30,16 @@ void run_shell(void)
 
 		/* Exit if the user inputs "exit" */
 		if (strcmp(input, "exit") == 0)
-			break;
+			break; 
 
-		/* Parse input into command and arguments */
+		/*  Exit if the user inputs "exit" */
+        /* if (strcmp(input, "exit") == 0)
+        {
+            free_path_list(path_list);
+            print_prompt("Exiting the shell\n");
+            exit(EXIT_SUCCESS);
+        } */
+	/* Parse input into command and arguments */
 		command = strtok(input, " ");
 		args[0] = command;
 
