@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * run_shell - Runs the simple shell program.
  */
@@ -16,7 +15,6 @@ void run_shell(void)
 	{
 		/* Print the shell prompt */
 		print_prompt();
-
 		/* Read user input */
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
@@ -24,22 +22,12 @@ void run_shell(void)
 			print_prompt(); /* Display prompt on a new line*/
 			break;
 		}
-
 		/* Remove newline character */
 		input[strcspn(input, "\n")] = 0;
-
 		/* Exit if the user inputs "exit" */
 		if (strcmp(input, "exit") == 0)
-			break; 
-
-		/*  Exit if the user inputs "exit" */
-        /* if (strcmp(input, "exit") == 0)
-        {
-            free_path_list(path_list);
-            print_prompt("Exiting the shell\n");
-            exit(EXIT_SUCCESS);
-        } */
-	/* Parse input into command and arguments */
+			break;
+		/* Parse input into command and arguments */
 		command = strtok(input, " ");
 		args[0] = command;
 

@@ -5,5 +5,5 @@
  */
 void print_prompt(void)
 {
-	write(STDOUT_FILENO, "EugeneShell $ ", 13);
+	write(STDOUT_FILENO, "SimpleShell> ", 13);
 }
