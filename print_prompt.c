@@ -3,7 +3,7 @@
 /**
  * print_prompt - Prints the shell prompt.
  */
-void print_prompt(void)
+void print_prompt(const char *message)
 {
-	write(STDOUT_FILENO, "SimpleShell> ", 13);
+	write(STDOUT_FILENO, message , strlen(message));
 }

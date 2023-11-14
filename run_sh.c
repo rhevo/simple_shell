@@ -14,12 +14,14 @@ void run_shell(void)
 	while (1)
 	{
 		/* Print the shell prompt */
-		print_prompt();
+		/* print_prompt("EugeneShell> ");*/
+		print_simple_shell_prompt();
 		/* Read user input */
 		if (fgets(input, sizeof(input), stdin) == NULL)
 		{
 			/* Check for end-of-file condition (Ctrl+D) */
-			print_prompt(); /* Display prompt on a new line*/
+			/*print_prompt();  Display prompt on a new line*/
+			print_simple_shell_prompt();
 			break;
 		}
 		/* Remove newline character */
