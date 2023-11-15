@@ -1,11 +1,11 @@
 #include "shell.h"
+
 /**
  * execute_command - Executes a command in a child process.
  * @command: The command to be executed.
  * @args: Array of arguments for the command.
  * @path_list: List of directories in the PATH environment variable.
  */
-
 /* Add a new function for executing external commands*/
 void execute_command(char *command, char **args, char **path_list)
 {
