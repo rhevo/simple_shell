@@ -1,49 +1,10 @@
 #include "shell.h"
-
 /**
  * execute_command - Executes a command in a child process.
  * @command: The command to be executed.
  * @args: Array of arguments for the command.
  * @path_list: List of directories in the PATH environment variable.
  */
-void execute_command(char *command, char **args, char **path_list)
-{
-    // Check if the command is "cd"
-    if (strcmp(command, "cd") == 0)
-    {
-        cd_builtin(args);
-    }
-    // Check if the command is "setenv"
-    else if (strcmp(command, "setenv") == 0)
-    {
-        setenv_builtin(args);
-    }
-    // Check if the command is "unsetenv"
-    else if (strcmp(command, "unsetenv") == 0)
-    {
-        unsetenv_builtin(args);
-    }
-    // Check if the command is "exit"
-    else if (strcmp(command, "exit") == 0)
-    {
-        // If there is an argument, use it as the exit status
-        if (args[1] != NULL)
-        {
-            int exit_status = atoi(args[1]);
-            exit(exit_status);
-        }
-        else
-        {
-            // If no argument provided, exit with status 0
-            exit(0);
-        }
-    }
-    // Check if the command is a valid external command
-    else
-    {
-        execute_external_command(command, args, path_list);
-    }
-}
 
 /* Add a new function for executing external commands*/
 void execute_command(char *command, char **args, char **path_list)
