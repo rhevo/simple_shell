@@ -6,8 +6,7 @@ void run_shell(void)
 {
 	char input[MAX_INPUT_SIZE];
 	char *command;
-	char *args[MAX_INPUT_SIZE / 2]; /*Assuming a maximum*/
-	/*of MAX_INPUT_SIZE/2 arguments */
+	char *args[MAX_INPUT_SIZE / 2];
 	char **path_list = get_path_directories(); /* Define path_list */
 	int i;
 
