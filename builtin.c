@@ -31,7 +31,6 @@ int shell_exit(info_t *info)
 /**
  * shell_cd - changes the current directory of the process
  * @info: Structure containing potential arguments.
- *
  * Return: Always 0
  */
 int shell_cd(info_t *info)

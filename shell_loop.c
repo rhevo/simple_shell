@@ -100,7 +100,7 @@ void find_external_command(info_t *info)
 	for (i = 0, j = 0; info->arg[i]; i++)
 		if (!is_delimiter(info->arg[i], "\t\n"))
 			j++;
-	if(!j)
+	if (!j)
 		return;
 
 	cmd_path = find_executable_in_path(info, shell_get_env(info, "PATH="),
