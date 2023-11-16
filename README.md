@@ -1,0 +1,1 @@
+This is the README for simple_shell project
