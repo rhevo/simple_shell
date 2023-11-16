@@ -36,7 +36,7 @@ int shell_exit(info_t *info)
  */
 int shell_cd(info_t *info)
 {
-	char *dir, char *s, buffer[1024];
+	char *dir, *s, buffer[1024];
 	int chdir_ret;
 
 	s = getcwd(buffer, 1024);
