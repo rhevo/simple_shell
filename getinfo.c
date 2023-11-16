@@ -1,8 +1,8 @@
 #include "shell.h"
 
 /**
- * clear_info - Initializes an info_t struct.
- * @info: Pointer to the struct to be cleared.
+ * initializes info_t struct
+ * @info: struct address
  */
 void clear_info(info_t *info)
 {
@@ -13,9 +13,9 @@ void clear_info(info_t *info)
 }
 
 /**
- * set_info - Initializes an info_t struct with the provided arguments.
- * @info: Pointer to the struct to be initialized.
- * @av: Argument vector.
+ * initializes info_t struct
+ * @info: struct address
+ * @av: argument vector
  */
 void set_info(info_t *info, char **av)
 {
@@ -24,13 +24,14 @@ void set_info(info_t *info, char **av)
 	info->fname = av[0];
 	if (info->arg)
 	{
-		info->argv = split_string(info->arg, " \t");
+		info->argv = strtow(info->arg, " \t");
 		if (!info->argv)
 		{
+
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
 			{
-				info->argv[0] = custom_strdup(info->arg);
+				info->argv[0] = _strdup(info->arg);
 				info->argv[1] = NULL;
 			}
 		}
@@ -38,19 +39,19 @@ void set_info(info_t *info, char **av)
 			;
 		info->argc = i;
 
-		replace_aliases(info);
-		replace_variables(info);
+		replace_alias(info);
+		replace_vars(info);
 	}
 }
 
 /**
- * free_info - Frees fields of an info_t struct.
- * @info: Pointer to the struct to be freed.
- * @all: Flag indicating whether to free all fields.
+ * frees info_t struct fields
+ * @info: struct address
+ * @all: true if freeing all fields
  */
 void free_info(info_t *info, int all)
 {
-	free_string_array(info->argv);
+	ffree(info->argv);
 	info->argv = NULL;
 	info->path = NULL;
 	if (all)
@@ -63,12 +64,11 @@ void free_info(info_t *info, int all)
 			free_list(&(info->history));
 		if (info->alias)
 			free_list(&(info->alias));
-		free_string_array(info->environ);
-		info->environ = NULL;
-		free_and_null((void **)info->cmd_buf);
-
-		if (info->readfd > STDERR_FILENO)
+		ffree(info->environ);
+			info->environ = NULL;
+		bfree((void **)info->cmd_buf);
+		if (info->readfd > 2)
 			close(info->readfd);
-		custom_putchar(BUF_FLUSH);
+		_putchar(BUF_FLUSH);
 	}
 }

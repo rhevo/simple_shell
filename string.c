@@ -1,74 +1,75 @@
 #include "shell.h"
-/**
- * custom_strlen - Returns the length of a string.
- * @str: The string to check.
- *
- * Return: The length of the string.
- */
-int custom_strlen(char *str)
-{
-	int length = 0;
 
-	if (!str)
-		return (0);
-	while (*str++)
-		length++;
-	return (length);
-}
 /**
- * custom_strcmp - Compares two strings lexicographically.
- * @str1: The first string.
- * @str2: The second string.
+ * returns the length of a string
+ * @s: the string whose length to check
  *
- * Return: Negative if str1 < str2, positive if str1 > str2, zero if
- * str1 == str2.
+ * Return: integer length of string
  */
-int custom_strcmp(char *str1, char *str2)
+int _strlen(char *s)
 {
-	while (*str1 && *str2)
+	int i = 0;
+
+	if (!s)
+		return (0);
+
+	while (*s++)
+		i++;
+	return (i);
+}
+
+/**
+ * performs lexicogarphic comparison of two strangs.
+ * @s1: the first strang
+ * @s2: the second strang
+ *
+ * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
+ */
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s2)
 	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
-		str1++;
-		str2++;
+		if (*s1 != *s2)
+			return (*s1 - *s2);
+		s1++;
+		s2++;
 	}
-	if (*str1 == *str2)
+	if (*s1 == *s2)
 		return (0);
 	else
-		return (*str1 < *str2 ? -1 : 1);
+		return (*s1 < *s2 ? -1 : 1);
 }
+
 /**
- * custom_starts_with - Checks if a string starts with a substring.
- * @str: The string to search.
- * @prefix: The substring to find.
+ * - checks if needle starts with haystack
+ * @haystack: string to search
+ * @needle: the substring to find
  *
- * Return: Pointer to the next character of str after the
- * prefix, or NULL if not found.
+ * Return: address of next char of haystack or NULL
  */
-char *custom_starts_with(const char *str, const char *prefix)
+char *starts_with(const char *haystack, const char *needle)
 {
-	while (*prefix)
-	{
-		if (*prefix++ != *str++)
+	while (*needle)
+		if (*needle++ != *haystack++)
 			return (NULL);
-	}
-	return ((char *)str);
+	return ((char *)haystack);
 }
+
 /**
- * custom_strcat - Concatenates two strings.
- * @dest: The destination buffer.
- * @src: The source buffer.
+ * concatenates two strings
+ * @dest: the destination buffer
+ * @src: the source buffer
  *
- * Return: Pointer to the destination buffer.
+ * Return: pointer to destination buffer
  */
-char *custom_strcat(char *dest, char *src)
+char *_strcat(char *dest, char *src)
 {
-	char *result = dest;
+	char *ret = dest;
 
 	while (*dest)
 		dest++;
 	while (*src)
 		*dest++ = *src++;
 	*dest = *src;
-	return (result);
+	return (ret);
 }
