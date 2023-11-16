@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * adds a node to the start of the list
+ * *add_node - dds a node to the start of the list
  * @head: address of pointer to head node
  * @str: str field of node
  * @num: node index used by history
@@ -34,7 +34,7 @@ list_t *add_node(list_t **head, const char *str, int num)
 }
 
 /**
- * adds a node to the end of the list
+ * *add_node_end - adds a node to the end of the list
  * @head: address of pointer to head node
  * @str: str field of node
  * @num: node index used by history
@@ -75,7 +75,7 @@ list_t *add_node_end(list_t **head, const char *str, int num)
 }
 
 /**
- * prints only the str element of a list_t linked list
+ * print_list_str - prints only the str element of a list_t linked list
  * @h: pointer to first node
  *
  * Return: size of list
@@ -95,7 +95,7 @@ size_t print_list_str(const list_t *h)
 }
 
 /**
- * deletes node at given index
+ * delete_node_at_index - deletes node at given index
  * @head: address of pointer to first node
  * @index: index of node to delete
  *
@@ -135,7 +135,7 @@ int delete_node_at_index(list_t **head, unsigned int index)
 }
 
 /**
- * frees all nodes of a list
+ * free_list - frees all nodes of a list
  * @head_ptr: address of pointer to head node
  *
  * Return: void

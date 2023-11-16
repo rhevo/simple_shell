@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * string into words. Repeat delimiters are ignored
+ * **strtow - string into words. Repeat delimiters are ignored
  * @str: the input string
  * @d: the delimeter string
  * Return: a pointer to an array of strings, or NULL on failure
@@ -49,7 +49,7 @@ char **strtow(char *str, char *d)
 }
 
 /**
- * string into words
+ * **strtow2 - string into words
  * @str: the input string
  * @d: the delimeter
  * Return: a pointer to an array of strings, or NULL on failure
