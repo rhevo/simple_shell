@@ -31,11 +31,12 @@ int shell_exit(info_t *info)
 /**
  * shell_cd - changes the current directory of the process
  * @info: Structure containing potential arguments.
+ *
  * Return: Always 0
  */
 int shell_cd(info_t *info)
 {
-	char *dir, *s, buffer[1024];
+	char *dir, char *s, buffer[1024];
 	int chdir_ret;
 
 	s = getcwd(buffer, 1024);
@@ -60,8 +61,7 @@ int shell_cd(info_t *info)
 		custom_puts(dir);
 		custom_putchar('\n');
 		chdir_ret = chdir(dir);
-	}
-	else
+	} else
 	{
 		chdir_ret = chdir(info->argv[1]);
 	}
@@ -70,8 +70,7 @@ int shell_cd(info_t *info)
 		print_custom_error(info, "can't cd to ");
 		shell_puts(info->argv[1]);
 		shell_putchar('\n');
-	}
-	else
+	} else
 	{
 		shell_setenv(info, "OLDPWD", shell_get_env(info, "PWD="));
 		shell_setenv(info, "PWD", getcwd(buffer, 1024));
@@ -88,7 +87,7 @@ int shell_help(info_t *info)
 {
 	char **arg_array = info->argv;
 
-	custom_puts("Help information for the shell. Function not yet implemented.\n");
+	custom_puts("Function not yet implemented.\n");
 	if (arg_array)
 		custom_puts(*arg_array);
 	return (0);
